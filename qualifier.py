@@ -25,13 +25,17 @@ class ArticleField:
 
 
 class Article:
+    articles = []
     """The `Article` class you need to write for the qualifier."""
-
     def __init__(self, title: str, author: str, publication_date: datetime.datetime, content: str):
         self.title = title
         self.author = author
         self.publication_date= publication_date
-        self.content = content
+        self._content = content
+        self.last_edited = None
+        self.id = len(self.articles)
+        self.articles.append(self)
+
     def __repr__(self):
         return '<{} title="{}" '.format(type(self).__name__, self.title) + "author='{}' publication_date='{}'>".format(self.author, self.publication_date.isoformat())
 
@@ -46,7 +50,6 @@ class Article:
                 if self.content[a].isspace() or self.content[a] == '\n':
                     return f"{self.content[:a]}"
                     break
-
 
     def most_common_words(self, n_words: int):
         words = {}

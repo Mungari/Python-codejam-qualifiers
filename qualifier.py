@@ -61,10 +61,22 @@ class Article:
             else:
                 words[word] = 1
         return {k: v for k, v in sorted(words.items(), key=lambda item: item[1], reverse=True)[:n_words]}
+    @property
+    def content(self):
+        return self._content
 
+    @content.setter
+    def content(self, newCon: str):
+        self._content = newCon
+        self.last_edited = datetime.datetime.now()
+'''
+articles=[]
+for _ in range(5):
+    article = Article(
+        title="a", author="b", content="c", publication_date=datetime.datetime.now()
+    )
+    articles.append(article)
 
-fairytale = Article("Ayaya", "Ayaya", datetime.datetime(1837, 4, 7, 12, 15, 0), "Io sono Mungari Io faccio sono faccio sono sono faccio Mungari hentai")
-print(repr(fairytale))
-len(fairytale)
-print(fairytale.short_introduction(4))
-print(fairytale.most_common_words(3))
+for a in articles:
+    print(a.id)
+'''
